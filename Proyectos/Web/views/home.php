@@ -1,1 +1,1 @@
-home
+<h1>Inicio</h1>

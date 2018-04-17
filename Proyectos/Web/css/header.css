@@ -1,6 +1,7 @@
 .nav-item{
 	margin: 0 auto 0 auto;
 	margin-right: 1em;
+	vertical-align: center;
 }
 .dropdown-toggle::after {
     display:none
