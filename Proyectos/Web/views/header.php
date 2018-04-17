@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto" style="margin-left: 10%">
       <li class="nav-item dropdown">
         <a class="dropdown-toggle" href="?page=contact" href="?page=home">Inicio

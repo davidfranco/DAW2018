@@ -6,3 +6,14 @@
 	margin-right: 2em;
 	margin-bottom: 2em;
 }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 3em;
+  width: 3em;
+  outline: black;
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  border: 1px solid #bdbdbd;
+  background-color: #bdbdbd;
+}

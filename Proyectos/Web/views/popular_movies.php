@@ -1,30 +1,31 @@
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script type="text/javascript" src="js/popular_movies.js"></script>
 <link rel="stylesheet" href="css/popular_movies.css">
-<script type="text/javascript">
-	function initCarousel(){
-		var elem = document.querySelector('.main-carousel');
-		var flkty = new Flickity( elem, {
-		  // options
-		  cellAlign: 'left',
-		  contain: true
-		});
-		var flkty = new Flickity( '.main-carousel', {
-		  // options
-		});
-	}
-</script>
 <div class="page-container" onload="initCarousel()">
 	<div id="currentPage"><h6><u><a href="?page=home">Inicio</a></u> > <u><a href="#">Peliculas</a></u> > Peliculas mejor valoradas</h6></div>
 	<h2>Peliculas mejor valoradas</h2>
-	<!--<div id="movies-carousel">
-		<div class="main-carousel">
-			<div class="carousel-cell"><img src="https://ia.media-imdb.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg" alt="Movie image 1"></div>
-			<div class="carousel-cell"><img src="https://ia.media-imdb.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg" alt="Movie image 2"></div>
-			<div class="carousel-cell"><img src="https://ia.media-imdb.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg" alt="Movie image 3"></div>
+	<div id="movies-carousel">
+		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+		  <div class="carousel-inner" style="text-align: center">
+			<div class="carousel-item active">
+			  <img src="https://ia.media-imdb.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg" alt="Movie image 1">
+			</div>
+			<div class="carousel-item">
+			  <img src="https://ia.media-imdb.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg" alt="Movie image 1">
+			</div>
+			<div class="carousel-item">
+			  <img src="https://ia.media-imdb.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg" alt="Movie image 1">
+			</div>
+		  </div>
+		  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		  </a>
+		  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		  </a>
 		</div>
-	</div>-->
+	</div>
 	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 	<div class="input-group" style="width: 20em">
 		<input type="text" class="form-control" placeholder="Buscar películas" aria-describedby="basic-addon1">
