@@ -19,10 +19,12 @@ public class MovieDAO{
 	private static final String SELECT_STATEMENT = "SELECT * FROM MOVIE WHERE 1=1";
 	private static final String UPDATE_STATEMENT = "UPDATE MOVIE SET <update> WHERE "
 	+ Movie.DB_MOVIE_ID_FIELD + "=?";
+	private static final String COUNT_STATEMENT = "SELECT COUNT(movie_id) count FROM MOVIE WHERE 1=1";
+
 	public MovieDAO(Connection c){
 		this.connection = c;
 	}
-	public List<Movie> findAll(MovieFilter filter, int startIndex, int limit){
+	public List<Movie> findAll(MovieFilter filter, int startIndex, int limit, int order){
 		List<Movie> result = new ArrayList<Movie>();
 		try{
 			String query = SELECT_STATEMENT;
@@ -77,6 +79,10 @@ public class MovieDAO{
 			if(limit > 0){
 				query+= " LIMIT " + limit;
 			}
+			if(startIndex > -1){
+				query+= " OFFSET " + startIndex;
+			}
+			if(order > 0){}
 			PreparedStatement pS = connection.prepareStatement(query);
 			for(Integer x : values.keySet()){
 				pS.setObject(x, values.get(x));
@@ -100,7 +106,73 @@ public class MovieDAO{
 		}
 		return result;
 	}
-	
+	public int count(MovieFilter filter){
+		int result = 0;
+		try{
+			String query = COUNT_STATEMENT;
+			HashMap<Integer, Object> values = new HashMap<Integer,Object>();
+			int c = 0;
+			Movie bean = filter.getMovie();
+			if(filter.getMovieIdFilter() != SearchFilter.NONE){
+				query += filter.getMovieIdFilter().getText(Movie.DB_MOVIE_ID_FIELD);
+				c++;
+				values.put(c, bean.getMovieId());
+			}
+			if(filter.getImageFilter() != SearchFilter.NONE){
+				query += filter.getImageFilter().getText(Movie.DB_IMAGE_FIELD);
+				c++;
+				values.put(c, bean.getImage());
+			}
+			if(filter.getLinkFilter() != SearchFilter.NONE){
+				query += filter.getLinkFilter().getText(Movie.DB_LINK_FIELD);
+				c++;
+				values.put(c, bean.getLink());
+			}
+			if(filter.getTitleFilter() != SearchFilter.NONE){
+				query += filter.getTitleFilter().getText(Movie.DB_TITLE_FIELD);
+				c++;
+				values.put(c, bean.getTitle());
+			}
+			if(filter.getPlaceFilter() != SearchFilter.NONE){
+				query += filter.getPlaceFilter().getText(Movie.DB_PLACE_FIELD);
+				c++;
+				values.put(c, bean.getPlace());
+			}
+			if(filter.getRatingFilter() != SearchFilter.NONE){
+				query += filter.getRatingFilter().getText(Movie.DB_RATING_FIELD);
+				c++;
+				values.put(c, bean.getRating());
+			}
+			if(filter.getStartCastFilter() != SearchFilter.NONE){
+				query += filter.getStartCastFilter().getText(Movie.DB_STAR_CAST_FIELD);
+				c++;
+				values.put(c, bean.getStartCast());
+			}
+			if(filter.getVoteFilter() != SearchFilter.NONE){
+				query += filter.getVoteFilter().getText(Movie.DB_VOTE_FIELD);
+				c++;
+				values.put(c, bean.getVote());
+			}
+			if(filter.getYearFilter() != SearchFilter.NONE){
+				query += filter.getYearFilter().getText(Movie.DB_YEAR_FIELD);
+				c++;
+				values.put(c, bean.getYear());
+			}
+			
+			PreparedStatement pS = connection.prepareStatement(query);
+			for(Integer x : values.keySet()){
+				pS.setObject(x, values.get(x));
+			}
+			ResultSet rs = pS.executeQuery();
+			rs.next();
+			result = rs.getInt("count");
+			rs.close();
+			pS.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return result;
+	}
 	public boolean delete(int movieId){
 		boolean result = true;
 		try{

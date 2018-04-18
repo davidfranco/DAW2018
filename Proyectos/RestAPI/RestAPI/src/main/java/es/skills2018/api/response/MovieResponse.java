@@ -5,6 +5,19 @@ import java.util.ArrayList;
 import es.skills2018.api.beans.Movie;
 
 public interface MovieResponse {
+	public class Count implements MovieResponse {
+		public int count;
+		public Count(){}
+		public Count(int count){
+			this.count = count;
+		}
+		public int getCount() {
+			return count;
+		}
+		public void setCount(int count) {
+			this.count = count;
+		}
+	}
 	public class List implements MovieResponse{
 		public ArrayList<Movie> movieList;
 		public List(){}

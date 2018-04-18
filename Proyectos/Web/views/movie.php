@@ -1,9 +1,10 @@
+<script type="text/javascript" src="js/movie.js"></script>
 <link rel="stylesheet" href="css/movie.css">
 <div class="page-container">
-	<h2>Cadena Perpetua</h2>
+	<h2 id="movie-title"></h2>
 	<div id="movie-info">
 		<div id="movie-image" style="padding-bottom: 1em;">
-			<img style="margin-left: 1em; margin-top: 1em;" src="https://ia.media-imdb.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg"></img>
+			<img style="margin-left: 1em; margin-top: 1em;" id="movie-image-container"></img>
 		</div>
 		<div id="movie-content">
 			<div id="movie-data">
@@ -16,8 +17,8 @@
 		</div>
 	</div>
 	<div id="button-container">
-				<button type="button" class="btn btn-success">Ver ficha en IMDB</button>
-				<button type="button" class="btn btn-info">Actualizar</button>
-				<button type="button" class="btn btn-danger">Borrar</button>
+				<button type="button" class="btn btn-success" data-toggle="tooltip" title="Ver ficha en IMDB">Ver ficha en IMDB</button>
+				<button type="button" class="btn btn-info" data-toggle="tooltip" title="Actualizar">Actualizar</button>
+				<button type="button" class="btn btn-danger" data-toggle="tooltip" title="Borrar">Borrar</button>
 	</div>
 </div>

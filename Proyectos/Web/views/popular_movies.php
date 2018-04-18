@@ -5,16 +5,7 @@
 	<h2>Peliculas mejor valoradas</h2>
 	<div id="movies-carousel">
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-		  <div class="carousel-inner" style="text-align: center">
-			<div class="carousel-item active">
-			  <img src="https://ia.media-imdb.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg" alt="Movie image 1">
-			</div>
-			<div class="carousel-item">
-			  <img src="https://ia.media-imdb.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg" alt="Movie image 1">
-			</div>
-			<div class="carousel-item">
-			  <img src="https://ia.media-imdb.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg" alt="Movie image 1">
-			</div>
+		  <div class="carousel-inner" style="text-align: center" id="carousel-movies-list">
 		  </div>
 		  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -37,5 +28,8 @@
 		<input type="radio" class="radio" value="3"  style="margin-left: 1em" name="order_radio" />Puntuación</label>
 	</div>
 	<div id="movies">
+	</div>
+	<div id="pagination-container" style="text-align: center;">
+		
 	</div>
 </div>

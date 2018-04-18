@@ -9,4 +9,6 @@ public class ServerConstants {
 	public static final String DATABASE_PASSWORD = "";
 	//Rest Response
 	public static final String REST_RESPONSE_CHARSET = ";charset=UTF-8";
+	//Pagination
+	public static final int ITEMS_PER_PAGE = 20;
 }
