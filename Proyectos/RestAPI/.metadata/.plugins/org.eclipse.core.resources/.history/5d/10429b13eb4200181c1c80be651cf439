@@ -28,7 +28,7 @@ public interface MovieResponse {
 		public String title;
 		public int place;
 		public double rating;
-		public String starsCast;
+		public String startCast;
 		public int vote;
 		public int year;
 		public Get(){}
@@ -39,7 +39,7 @@ public interface MovieResponse {
 			this.title = movie.getTitle();
 			this.place = movie.getPlace();
 			this.rating = movie.getRating();
-			this.starsCast = movie.getStartCast();
+			this.startCast = movie.getStartCast();
 			this.vote = movie.getVote();
 			this.year = movie.getYear();
 		}

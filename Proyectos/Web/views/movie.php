@@ -7,10 +7,10 @@
 		</div>
 		<div id="movie-content">
 			<div id="movie-data">
-				<h5><b>Posición Ranking: </b> 1</h5>
-				<h5><b>Puntuación: </b> 9,21</h5>
-				<h5><b>Año: </b> 1994</h5>
-				<h5><b>Reparto: </b>Frank Darabont(dir),Tim Robbins,Morgan Freeman
+				<h5><b>Posición Ranking: </b> <input type="text" id="rankingField"></input></h5>
+				<h5><b>Puntuación: </b> <input type="text" id="scoreField"></input></h5>
+				<h5><b>Año: </b> <input type="text" id="yearField"></input></h5></h5>
+				<h5><b>Reparto: </b><input type="text" id="starsField"></input></h5>
 				</h5>
 			</div>
 		</div>

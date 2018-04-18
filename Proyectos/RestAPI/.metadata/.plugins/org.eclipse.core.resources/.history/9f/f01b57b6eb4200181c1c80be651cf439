@@ -56,9 +56,9 @@ public class MovieResource {
 	 * This EndPoint gets called to get a list of all the available movies.
 	 */
 	@GET
-	@Path("/listCarousel")
+	@Path("/getCarouselMovies")
 	@Produces(CustomMediaType.APPLICATION_JSON)
-	public Response listCarousel() {
+	public Response getCarouselMovies() {
 		Connection connection;
 		try {
 			//We return the connection from the connection pool
@@ -71,7 +71,7 @@ public class MovieResource {
 		//Movie DAO Construct
 		MovieDAO movieDAO = new MovieDAO(connection);
 		//We return all the movies using an empty filter
-		List<Movie> returnedMovies = movieDAO.findAll(new MovieFilter(new Movie()), -1, 5);
+		List<Movie> returnedMovies = movieDAO.findAll(new MovieFilter(new Movie()), -1, -1);
 		if(returnedMovies == null){
 			releaseConnection(connection);
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)

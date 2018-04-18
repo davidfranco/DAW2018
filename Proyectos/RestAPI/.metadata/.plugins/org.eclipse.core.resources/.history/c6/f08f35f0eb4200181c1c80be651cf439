@@ -56,9 +56,9 @@ public class MovieResource {
 	 * This EndPoint gets called to get a list of all the available movies.
 	 */
 	@GET
-	@Path("/listCarousel")
+	@Path("/listCarouselMovies")
 	@Produces(CustomMediaType.APPLICATION_JSON)
-	public Response listCarousel() {
+	public Response getCarouselMovies() {
 		Connection connection;
 		try {
 			//We return the connection from the connection pool

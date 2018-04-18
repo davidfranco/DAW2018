@@ -74,12 +74,12 @@ public class MovieDAO{
 				c++;
 				values.put(c, bean.getYear());
 			}
-			if(limit > 0){
-				query+= " LIMIT " + limit;
-			}
 			PreparedStatement pS = connection.prepareStatement(query);
 			for(Integer x : values.keySet()){
 				pS.setObject(x, values.get(x));
+			}
+			if(limit != -1){
+				query+= " LIMIT " + limit;
 			}
 			ResultSet rs = pS.executeQuery();
 			while(rs.next()){

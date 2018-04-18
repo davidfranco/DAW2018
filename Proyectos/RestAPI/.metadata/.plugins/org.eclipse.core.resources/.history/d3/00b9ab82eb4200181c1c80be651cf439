@@ -22,7 +22,7 @@ public class MovieDAO{
 	public MovieDAO(Connection c){
 		this.connection = c;
 	}
-	public List<Movie> findAll(MovieFilter filter, int startIndex, int limit){
+	public List<Movie> findAll(MovieFilter filter){
 		List<Movie> result = new ArrayList<Movie>();
 		try{
 			String query = SELECT_STATEMENT;
@@ -74,9 +74,6 @@ public class MovieDAO{
 				c++;
 				values.put(c, bean.getYear());
 			}
-			if(limit > 0){
-				query+= " LIMIT " + limit;
-			}
 			PreparedStatement pS = connection.prepareStatement(query);
 			for(Integer x : values.keySet()){
 				pS.setObject(x, values.get(x));
@@ -100,7 +97,6 @@ public class MovieDAO{
 		}
 		return result;
 	}
-	
 	public boolean delete(int movieId){
 		boolean result = true;
 		try{
