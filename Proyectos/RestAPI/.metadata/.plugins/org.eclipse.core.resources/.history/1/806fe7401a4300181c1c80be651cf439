@@ -3,20 +3,20 @@ package es.skills2018.api.request;
 public interface MovieRequest {
 	public class Put implements MovieRequest{
 		public int ranking;
-		public double score;
+		public int score;
 		public int year;
 		public String starCast;
 		public Put(){}
-		public Put(int ranking, double score, int year, String starCast) {
+		public Put(int ranking, int score, int year, String starCast) {
 			this.ranking = ranking;
 			this.score = score;
 			this.year = year;
 			this.starCast = starCast;
 		}
-		public double getScore() {
+		public int getScore() {
 			return score;
 		}
-		public void setScore(double score) {
+		public void setScore(int score) {
 			this.score = score;
 		}
 		public int getYear() {

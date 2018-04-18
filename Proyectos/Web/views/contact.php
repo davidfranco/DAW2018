@@ -1,3 +1,4 @@
+<script type="text/javascript" src="js/contact.js"></script>
 <link rel="stylesheet" href="css/contact.css">
 
 <div class="page-container">
@@ -12,7 +13,7 @@
 		<label for="message_input" style="margin-top: 2em">Mensaje</label>
 		<textarea class="form-control" rows="5" id="message_input"></textarea>
 		<div id="contact_form_buttons" style="margin-top: 2em">
-			<button type="button" class="btn btn-info">Enviar mensaje</button>
+			<button type="button" class="btn btn-info" onclick="sendContactMessage()">Enviar mensaje</button>
 			<a href="?page=home"><button type="button" class="btn btn-default" style="float: right;">Inicio</button></a>
 		</div>
 	</div>

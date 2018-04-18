@@ -260,6 +260,7 @@ public class MovieResource {
 		MovieDAO movieDAO = new MovieDAO(connection);
 		HashMap<String,Object> toUpdateFields = new HashMap<String,Object>();
 		toUpdateFields.put(Movie.DB_PLACE_FIELD, request.getRanking());
+		System.out.println(request.getScore());
 		toUpdateFields.put(Movie.DB_RATING_FIELD, request.getScore());
 		toUpdateFields.put(Movie.DB_YEAR_FIELD, request.getYear());
 		toUpdateFields.put(Movie.DB_STAR_CAST_FIELD, request.getStarCast());

@@ -3,13 +3,11 @@ package es.skills2018.api.resources;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -231,39 +229,6 @@ public class MovieResource {
 		// Movie DAO Construct
 		MovieDAO movieDAO = new MovieDAO(connection);
 		MovieResponse.Delete response = new MovieResponse.Delete(movieDAO.delete(movieId));
-		try{
-			connection.commit();
-		}catch(Exception ex){
-			response.setSuccess(false);
-		}
-		releaseConnection(connection);
-		return Response.status(Response.Status.OK).entity(response).header("Access-Control-Allow-Origin", "*").build();
-	}
-	/**
-	 * This EndPoint gets called to update a movie
-	 */
-	@PUT
-	@Path("/{movieId : \\d+}")
-	@Produces(CustomMediaType.APPLICATION_JSON)
-	public Response update(@PathParam("movieId") int movieId, MovieRequest.Put request) {
-		if (request == null || request.getStarCast() == null || request.getRanking() < 1 || request.getScore() < 0 || request.getScore() > 10) {
-			return Response.status(Response.Status.BAD_REQUEST).entity("Invalid params").build();
-		}
-		Connection connection;
-		try {
-			// We return the connection from the connection pool
-			connection = new DatabaseObject().getConnection();
-		} catch (SQLException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database Error").build();
-		}
-		// Movie DAO Construct
-		MovieDAO movieDAO = new MovieDAO(connection);
-		HashMap<String,Object> toUpdateFields = new HashMap<String,Object>();
-		toUpdateFields.put(Movie.DB_PLACE_FIELD, request.getRanking());
-		toUpdateFields.put(Movie.DB_RATING_FIELD, request.getScore());
-		toUpdateFields.put(Movie.DB_YEAR_FIELD, request.getYear());
-		toUpdateFields.put(Movie.DB_STAR_CAST_FIELD, request.getStarCast());
-		MovieResponse.Update response = new MovieResponse.Update(movieDAO.update(movieId, toUpdateFields));
 		try{
 			connection.commit();
 		}catch(Exception ex){

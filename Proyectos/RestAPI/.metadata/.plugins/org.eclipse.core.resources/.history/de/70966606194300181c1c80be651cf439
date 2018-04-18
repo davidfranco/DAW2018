@@ -3,7 +3,6 @@ package es.skills2018.api.resources;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.ws.rs.DELETE;
@@ -258,12 +257,7 @@ public class MovieResource {
 		}
 		// Movie DAO Construct
 		MovieDAO movieDAO = new MovieDAO(connection);
-		HashMap<String,Object> toUpdateFields = new HashMap<String,Object>();
-		toUpdateFields.put(Movie.DB_PLACE_FIELD, request.getRanking());
-		toUpdateFields.put(Movie.DB_RATING_FIELD, request.getScore());
-		toUpdateFields.put(Movie.DB_YEAR_FIELD, request.getYear());
-		toUpdateFields.put(Movie.DB_STAR_CAST_FIELD, request.getStarCast());
-		MovieResponse.Update response = new MovieResponse.Update(movieDAO.update(movieId, toUpdateFields));
+		MovieResponse.Update response = new MovieResponse.Update(movieDAO.delete(movieId));
 		try{
 			connection.commit();
 		}catch(Exception ex){

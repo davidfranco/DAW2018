@@ -17,12 +17,12 @@ function loadMovieData(){
              }
          });
 }
-var isDeleting = false;
+var actionInCourse = false;
 function deleteMovie(){
-	if(isDeleting){
+	if(actionInCourse){
 		return;
 	}
-	isDeleting = true;
+	actionInCourse = true;
 	var movieId = parseInt(getUrlVars()["movieId"]);
 	var url = SERVER_URL + "/movies/" + movieId;
 	$.ajax({
@@ -34,7 +34,42 @@ function deleteMovie(){
         }
      });
 }
-
+function updateMovie(){
+	var place = $("#rankingField").val();
+	var score = $("#scoreField").val();
+	var year = $("#yearField").val();
+	var stars = $("#starsField").val();
+	if(place == null || score == null || year == null || stars == null || place < 0 || score > 10 || score < 0 || year < 0 || stars == ''){
+		window.alert("Rellene todos los campos correctamente.");
+		return;
+	}
+	if(actionInCourse){
+		return;
+	}
+	actionInCourse = true;
+	var movieId = parseInt(getUrlVars()["movieId"]);
+	var url = SERVER_URL + "/movies/" + movieId;
+	var data = {
+		"ranking": parseInt(place),
+		"score": parseFloat(score),
+		"year": parseInt(year),
+		"starCast": stars
+	};
+	$.ajax({
+		url: url,
+		method: "PUT",
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: "application/json",
+		success: function(data){
+			location.reload();
+        },
+		 error: function(XMLHttpRequest, textStatus, errorThrown) {
+			 actionInCourse = false;
+			alert("No se pudo actualizar la pelicula.");
+		}
+     });
+}
 function getUrlVars() {
 	var vars = {};
 	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
