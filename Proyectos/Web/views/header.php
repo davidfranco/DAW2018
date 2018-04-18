@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/header.css">
 <script src="js/bootstrap.js"></script>
+<script src="js/constants.js"></script>
 <meta charset="UTF-8">
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">

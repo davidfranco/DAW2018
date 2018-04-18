@@ -48,7 +48,7 @@ public class MovieResource {
 		}
 		releaseConnection(connection);
 		MovieResponse.List response = new MovieResponse.List((ArrayList<Movie>)returnedMovies);
-		return Response.status(Response.Status.OK).entity(response).header("Access-Control-Allow-Origin", "*").build();
+		return Response.status(Response.Status.OK).entity(response).build();
 	}
 	private void releaseConnection(Connection c){
 		try{
