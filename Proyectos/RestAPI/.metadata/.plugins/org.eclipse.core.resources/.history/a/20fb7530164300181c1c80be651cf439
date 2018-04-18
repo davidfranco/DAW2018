@@ -229,11 +229,6 @@ public class MovieResource {
 		// Movie DAO Construct
 		MovieDAO movieDAO = new MovieDAO(connection);
 		MovieResponse.Delete response = new MovieResponse.Delete(movieDAO.delete(movieId));
-		try{
-			connection.commit();
-		}catch(Exception ex){
-			response.setSuccess(false);
-		}
 		releaseConnection(connection);
 		return Response.status(Response.Status.OK).entity(response).header("Access-Control-Allow-Origin", "*").build();
 	}

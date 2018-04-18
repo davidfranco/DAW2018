@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -212,31 +210,7 @@ public class MovieResource {
 		MovieResponse.Get response = new MovieResponse.Get(returnedMovies.get(0));
 		return Response.status(Response.Status.OK).entity(response).header("Access-Control-Allow-Origin", "*").build();
 	}
-	/**
-	 * This EndPoint gets called to delete a movie
-	 */
-	@DELETE
-	@Path("/{movieId : \\d+}")
-	@Produces(CustomMediaType.APPLICATION_JSON)
-	public Response delete(@PathParam("movieId") int movieId) {
-		Connection connection;
-		try {
-			// We return the connection from the connection pool
-			connection = new DatabaseObject().getConnection();
-		} catch (SQLException e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Database Error").build();
-		}
-		// Movie DAO Construct
-		MovieDAO movieDAO = new MovieDAO(connection);
-		MovieResponse.Delete response = new MovieResponse.Delete(movieDAO.delete(movieId));
-		try{
-			connection.commit();
-		}catch(Exception ex){
-			response.setSuccess(false);
-		}
-		releaseConnection(connection);
-		return Response.status(Response.Status.OK).entity(response).header("Access-Control-Allow-Origin", "*").build();
-	}
+
 	/**
 	 * This EndPoint gets called to count the number of movies
 	 */
