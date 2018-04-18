@@ -76,18 +76,18 @@ public class MovieDAO{
 				c++;
 				values.put(c, bean.getYear());
 			}
+			if(limit > 0){
+				query+= " LIMIT " + limit;
+			}
+			if(startIndex > -1){
+				query+= " OFFSET " + startIndex;
+			}
 			if(order == 1){
 				query+= " ORDER BY place";
 			}else if(order == 2){
 				query+= " ORDER BY year";
 			}else if(order == 3){
 				query+= " ORDER BY title";
-			}
-			if(limit > 0){
-				query+= " LIMIT " + limit;
-			}
-			if(startIndex > -1){
-				query+= " OFFSET " + startIndex;
 			}
 			PreparedStatement pS = connection.prepareStatement(query);
 			for(Integer x : values.keySet()){

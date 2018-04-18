@@ -64,7 +64,7 @@ public class MovieResource {
 	@GET
 	@Path("/listPage/{pageId : \\d+}/{order : \\d+}")
 	@Produces(CustomMediaType.APPLICATION_JSON)
-	public Response listOrderedPage(@PathParam("pageId") int pageId, @PathParam("order") int order) {
+	public Response listOrderedPage(@PathParam("pageId") int pageId, @PathParam("pageId") int order) {
 		Connection connection;
 		try {
 			// We return the connection from the connection pool
@@ -170,6 +170,7 @@ public class MovieResource {
 		MovieResponse.Count response = new MovieResponse.Count(count);
 		return Response.status(Response.Status.OK).entity(response).header("Access-Control-Allow-Origin", "*").build();
 	}
+
 	private void releaseConnection(Connection c) {
 		try {
 			c.close();

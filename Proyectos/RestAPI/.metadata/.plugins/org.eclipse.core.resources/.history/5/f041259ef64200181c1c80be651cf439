@@ -89,6 +89,7 @@ public class MovieDAO{
 			if(startIndex > -1){
 				query+= " OFFSET " + startIndex;
 			}
+			System.out.println(query);
 			PreparedStatement pS = connection.prepareStatement(query);
 			for(Integer x : values.keySet()){
 				pS.setObject(x, values.get(x));
