@@ -1,0 +1,55 @@
+package com.barive.api.utils;
+
+import com.amazonaws.regions.Regions;
+
+public class ServerConstants {
+	//Config
+	public static final int USER_RECOVERY_CODE_EXPIRATION_MINUTES = 30;
+	public static final int BCRYPT_LOG_ROUNDS = 12;
+	public static final int JWT_EXPIRATION_MINUTES = 30;
+	public static final int API_JWT_EXPIRATION_MINUTES = 1440;
+	public static final int SESSION_APP_EXPIRATION_MONTHS = 12;
+	public static final int SESSION_REMEMEMBER_EXPIRATION_MONTHS = 1;
+	public static final int SESSION_DEFAULT_EXPIRATION_HOURS = 4;
+	public static final int USER_MAX_INVOICE_DATA = 4;
+	public static final int PRODUCT_IMAGE_WIDTH = 100;
+	public static final int PRODUCT_IMAGE_HEIGHT = 100;
+	public static final int EVENT_IMAGE_WIDTH = 200;
+	public static final int EVENT_IMAGE_HEIGHT = 200;
+	public static final int PUB_DISPLAY_IMAGE_WIDTH = 300;
+	public static final int PUB_DISPLAY_IMAGE_HEIGHT = 300;
+	public static final int PUB_LOGO_IMAGE_WIDTH = 400;
+	public static final int PUB_LOGO_IMAGE_HEIGHT = 400;
+	//Database
+	public static final String DATABASE_URL = "jdbc:mysql://barive.com/barive";
+	public static final String DATABASE_CONNECTOR = "com.mysql.jdbc.Driver";
+	public static final String DATABASE_USER = "root";
+	public static final String DATABASE_PASSWORD = "SyYQK7xHBCnoc9q6";
+	//JWT
+	public static final String JWT_PRIVATE_KEY_BASE64 = "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCYO5ITqumWrOrQlaOL1sUjKOO4DDagno9muDuoJaKHM4Ag4rZN95uEeH5w4zsdTGLgsJefeGyYd2m5i9q2upGg/n+7UinV7UK31hYTfPfBzhai4ZwJVafYFdxoxC0F+aeI1YgH/Mu2oQ84ilH3VKnkmCfexuN2/VA9zExmzpd2Xe7lfHAe0QMzc9pDftdFZGQHVlejDogblAix9FiP9TbXppkpIYTUcjPKevMmEYKDluSiE5vDE5ZCeGC4G/ig5tK47UpmjHjZXI8KdfVH7ins+BkUMuRuVItoceWEEWmHMCr8jQIt6YhiEngPaRYmd4+k1w/kCXeTx07JHyXEpMZDAgMBAAECggEAW1Rx4ObK2SDIh3ce9UhWYS+o3sRFCbvW4JNrBwf9KAvXtOMO6FvCq4j2opdQ4dTwBUkszfmbfSU3AqBLCRGJSQMmcqVqf/Ol8VC5UdvJcDZKElI0IM2IsvT6lMgNEuaigk9JGzGordqWnR8u6ambe49lbBv6X2q99zVYKN2MtO/br/vGGMf3s58TKbIXqaVPLPoB87BX9hkuU52U4X5pe4DtdThCb36J9yTi9F8+mrBj+q2GhIIjC44TMDS/gSASNklETXeGHelOP4B/1+DWWnecMRtkw0i22R2u8X1l508O1OUWz+RKrc5sVOqKAYA6NK+9VuEp2OPSKiBYlmFZAQKBgQDbYPwyo2ucPce+Gx8rtBZ6JXWwNtmAGzLQv5j+fuP9rxgbZQ4rLO2ndx1BzR1iozRmRCahzFJwSJfmzuWHs5zZOGsKQ1QhhuVuXV9Hb7rkQi8Yl7wnugFQriLl1sv7f4BpFBOn53d6zMG4IgdYd2v54gQ1AeR5SkBItBsy5oFWAwKBgQCxpSM8gHK/ImyIBvN2GdIo8jZl4oKlEf26PWqY7hTqSNk7P5q3Zsq9ibbhRfquZytT9dFcqFg4QtGm/c0HmwgWZUHQUAsDnsc2SZUZ5hp2sxfskiKaSGOSOU8W6dxH6PLEk/LWRwzk7YhQVTNjujQf3d7pyiDs+whnW2IUjQz6wQKBgQDPAAmYgokUqVrjL9ZOt6QJ53TQLEE41vEw9ckYQoVAp0nY95bR+Jfaz9NEdpXGr/bOlHnba99R4b2rZQhB7qIOeWTPD07AP/gXFnXEA1JW9XhY/TvmRGXfSiDVvMNG8T0qaW5OnWMo9THJXBqQSEcTR0fu+HUsWXqk34VWlxftHwKBgHRgkQLzyzh4Hs3Gb/yw0cNNWmHI0Hm/nY9C6PCjGESb0ORFuN/pkWw2Kf7Oz3kt0W7BnZSsHI9PBvX1UzpmUBgL4d/McErA3BUug2ViH3gfv86VteGJBuImdS+3qT3a2B/8JJxIE6RuEF1AU9hDhh5SRdS3PHbDxi+f6FM6TISBAoGBANAkMaMrhiJGUEDC5cXuGuhPZjg+9NnoW8YFt3OlrkhNOTdALCU7CSY9L1sp0ifKTspD+Xpxfb/geHBrpp/r87Rgbsn01dTrY1GMABuw/huLptmlF9BvsuyYHbozNNDdZ/QlLFEkAxwF8jpjJuvEIk72VDDJZna45FVzKdHeRSQa";
+	public static final String JWT_PUBLIC_KEY_BASE64 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmDuSE6rplqzq0JWji9bFIyjjuAw2oJ6PZrg7qCWihzOAIOK2TfebhHh+cOM7HUxi4LCXn3hsmHdpuYvatrqRoP5/u1Ip1e1Ct9YWE3z3wc4WouGcCVWn2BXcaMQtBfmniNWIB/zLtqEPOIpR91Sp5Jgn3sbjdv1QPcxMZs6Xdl3u5XxwHtEDM3PaQ37XRWRkB1ZXow6IG5QIsfRYj/U216aZKSGE1HIzynrzJhGCg5bkohObwxOWQnhguBv4oObSuO1KZox42VyPCnX1R+4p7PgZFDLkblSLaHHlhBFphzAq/I0CLemIYhJ4D2kWJnePpNcP5Al3k8dOyR8lxKTGQwIDAQAB";
+	//Google Captcha
+	public static final String GOOGLE_CAPTCHA_SITE_KEY = "6Lez8woUAAAAAJ8CYYS72cZSvtGxOXLzjFX6c9eo";
+	public static final String GOOGLE_CAPTCHA_SECRET_KEY = "6Lez8woUAAAAAOsOtTwDmdjqjYT-pYRuKS96H6Jb";
+	public static final String GOOGLE_CAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify";
+	//Google Auth
+	public static final String GOOGLE_AUTH_CLIENT_ID = "398717944078-elef7stgf6n523e0n4bs5gfjcmm0s6d9.apps.googleusercontent.com";
+	//Amazon
+	public static final String AMAZON_ACCESS_KEY_ID = "AKIAIVVIE4MM6H5KLTEA";
+	public static final String AMAZON_SECRET_KEY_ID= "m3zOX/kSOzU+Z7Dc2SizjSDqeIaM5wJi0CHUw0GS";
+	public static final String AMAZON_BUCKET_NAME = "barive";
+	public static final Regions AMAZON_REGION = Regions.EU_WEST_1;
+	//SMTP
+	public static final String SMTP_HOST = "barive.com";
+	public static final String SMTP_PORT = "587";
+	public static final String SMTP_USERNAME = "noreply@barive.com";
+	public static final String SMTP_PASSWORD = "kasASTa3";
+	//Domain
+	public static final String DOMAIN_NAME = "http://www.barive.com";
+	//Email
+	public static final String EMAIL_VERIFICATION_WEB_URL = DOMAIN_NAME + "/verify/";
+	public static final String PASSWORD_RECOVERY_WEB_URL = DOMAIN_NAME + "/recover/";
+	public static final String ACCOUNT_RECOVERY_WEB_URL = DOMAIN_NAME + "/forgot_password/";
+	//Rest Response
+	public static final String REST_RESPONSE_CHARSET = ";charset=UTF-8";
+}

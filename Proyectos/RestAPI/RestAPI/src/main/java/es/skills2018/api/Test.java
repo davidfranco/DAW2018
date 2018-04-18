@@ -1,0 +1,21 @@
+package es.skills2018.api;
+ 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
+  
+@Path("/hello")
+public class Test {
+  
+    @GET
+    public Response getMsg() {
+        return Response.status(200).entity(new TestBean(1)).build();
+  
+    }
+    public class TestBean{
+    	public int test;
+    	public TestBean(int test){
+    		this.test = test;
+    	}
+    }
+}

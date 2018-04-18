@@ -1,0 +1,5 @@
+package es.skills2018.api.beans;
+
+public class Movie {
+
+}
