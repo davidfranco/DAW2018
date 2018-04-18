@@ -1,0 +1,5 @@
+127.0.0.1 - - [18/Apr/2018:10:35:06 +0200] "GET / HTTP/1.1" 404 961
+0:0:0:0:0:0:0:1 - - [18/Apr/2018:10:35:08 +0200] "GET /RestAPI/WEB-INF/classes/es/skills2018/api/resources/MovieResource.java HTTP/1.1" 404 959
+0:0:0:0:0:0:0:1 - - [18/Apr/2018:10:35:14 +0200] "GET /RestAPI/rest/hello HTTP/1.1" 500 1051
+0:0:0:0:0:0:0:1 - - [18/Apr/2018:10:35:15 +0200] "GET /favicon.ico HTTP/1.1" 404 983
+0:0:0:0:0:0:0:1 - - [18/Apr/2018:10:35:20 +0200] "GET /RestAPI/rest/movies/listAll HTTP/1.1" 200 127570

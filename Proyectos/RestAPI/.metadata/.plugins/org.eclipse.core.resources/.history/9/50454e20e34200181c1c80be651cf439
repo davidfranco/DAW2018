@@ -1,0 +1,8 @@
+package es.skills2018.api.response;
+
+public interface MovieResponse {
+	public class List{
+		private List<Movie> movieList;
+		p
+	}
+}

@@ -62,6 +62,9 @@ public class DatabaseObject {
 	}
 
 	public DataSource getDataSource() {
+		if(dataSource == null){
+			initDataSource();
+		}
 		return dataSource;
 	}
 

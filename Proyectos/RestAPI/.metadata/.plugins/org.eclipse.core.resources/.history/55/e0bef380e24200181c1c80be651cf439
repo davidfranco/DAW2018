@@ -1,0 +1,26 @@
+package es.skills2018.api.resources;
+
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+
+@Path("/movies")
+public class MovieResource {
+	
+	/**
+	 * This EndPoint gets called to get a list of all the available movies.
+	 */
+	@GET
+	@Path("/listAll")
+	@Produces(CustomMediaType.APPLICATION_JSON)
+	public Response listAll() {
+		return Response.status(Response.Status.OK).entity(response).build();
+	}
+}
