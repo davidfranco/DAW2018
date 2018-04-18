@@ -23,9 +23,9 @@
 	</div>
 	<div id="order-by-movie" style="margin-top: 1em">
 		Ordenar por:
-		<input type="radio" class="radio" value="1" style="margin-left: 1em" name="order_radio"/>Titulo</label>
-		<input type="radio" class="radio" value="2"  style="margin-left: 1em" name="order_radio"/>Fecha de estreno</label>
-		<input type="radio" class="radio" value="3"  style="margin-left: 1em" name="order_radio" />Puntuación</label>
+		<input type="radio" class="radio" value="3" style="margin-left: 1em" name="order_radio" id="order-button-3" onclick="setOrder()"/>Titulo</label>
+		<input type="radio" class="radio" value="2"  style="margin-left: 1em" name="order_radio" id="order-button-2" onclick="setOrder()"/>Fecha de estreno</label>
+		<input type="radio" class="radio" value="1"  style="margin-left: 1em" name="order_radio" id="order-button-1"  onclick="setOrder()"/>Puntuación</label>
 	</div>
 	<div id="movies">
 	</div>
