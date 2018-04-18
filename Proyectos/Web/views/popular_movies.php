@@ -19,7 +19,7 @@
 	</div>
 	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 	<div class="input-group" style="width: 20em">
-		<input type="text" class="form-control" placeholder="Buscar películas" aria-describedby="basic-addon1">
+		<input type="text" id="searchField" class="form-control" placeholder="Buscar películas" aria-describedby="basic-addon1" onchange="loadPageNumber();">
 	</div>
 	<div id="order-by-movie" style="margin-top: 1em">
 		Ordenar por:

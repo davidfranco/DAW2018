@@ -17,6 +17,8 @@ public class MovieDAO{
 	private static final String DELETE_STATEMENT = "DELETE FROM MOVIE WHERE " + Movie.DB_MOVIE_ID_FIELD + "=?";
 	private static final String INSERT_STATEMENT = "INSERT INTO MOVIE(" +  Movie.DB_IMAGE_FIELD + " ," + Movie.DB_LINK_FIELD + " ," + Movie.DB_TITLE_FIELD + " ," + Movie.DB_PLACE_FIELD + " ," + Movie.DB_RATING_FIELD + " ," + Movie.DB_STAR_CAST_FIELD + " ," + Movie.DB_VOTE_FIELD + " ," + Movie.DB_YEAR_FIELD  + ") VALUES(?,?,?,?,?,?,?,?)";
 	private static final String SELECT_STATEMENT = "SELECT * FROM MOVIE WHERE 1=1";
+	private static final String SEARCH_STATEMENT = "SELECT * FROM MOVIE WHERE ";
+	private static final String SEARCH_COUNT_STATEMENT = "SELECT COUNT(movie_id) count FROM MOVIE WHERE ";
 	private static final String UPDATE_STATEMENT = "UPDATE MOVIE SET <update> WHERE "
 	+ Movie.DB_MOVIE_ID_FIELD + "=?";
 	private static final String COUNT_STATEMENT = "SELECT COUNT(movie_id) count FROM MOVIE WHERE 1=1";
@@ -110,6 +112,75 @@ public class MovieDAO{
 		}catch(SQLException e){
 			e.printStackTrace();
 			result = null;
+		}
+		return result;
+	}
+	public List<Movie> search(String text, int startIndex, int limit, int order){
+		List<Movie> result = new ArrayList<Movie>();
+		try{
+			String query = SEARCH_STATEMENT;
+			HashMap<Integer, Object> values = new HashMap<Integer,Object>();
+			query += "LOWER(title) LIKE CONCAT('%',?,'%')";
+			values.put(1, text.toLowerCase());
+			query += " OR LOWER(star_cast) LIKE CONCAT('%',?,'%')";
+			values.put(2, text.toLowerCase());
+			if(order == 1){
+				query+= " ORDER BY place";
+			}else if(order == 2){
+				query+= " ORDER BY year";
+			}else if(order == 3){
+				query+= " ORDER BY title";
+			}
+			if(limit > 0){
+				query+= " LIMIT " + limit;
+			}
+			if(startIndex > -1){
+				query+= " OFFSET " + startIndex;
+			}
+			PreparedStatement pS = connection.prepareStatement(query);
+			for(Integer x : values.keySet()){
+				pS.setObject(x, values.get(x));
+			}
+			ResultSet rs = pS.executeQuery();
+			while(rs.next()){
+				result.add(new Movie(rs.getInt(Movie.DB_MOVIE_ID_FIELD),
+					rs.getString(Movie.DB_IMAGE_FIELD),
+					rs.getString(Movie.DB_LINK_FIELD),
+					rs.getString(Movie.DB_TITLE_FIELD),
+					rs.getInt(Movie.DB_PLACE_FIELD),
+					rs.getDouble(Movie.DB_RATING_FIELD),
+					rs.getString(Movie.DB_STAR_CAST_FIELD),
+					rs.getInt(Movie.DB_VOTE_FIELD),
+					rs.getInt(Movie.DB_YEAR_FIELD)));
+			}
+			rs.close();
+			pS.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+			result = null;
+		}
+		return result;
+	}
+	public int countSearch(String text){
+		int result = 0;
+		try{
+			String query = SEARCH_COUNT_STATEMENT;
+			HashMap<Integer, Object> values = new HashMap<Integer,Object>();
+			query += "LOWER(title) LIKE CONCAT('%',?,'%')";
+			values.put(1, text.toLowerCase());
+			query += " OR LOWER(star_cast) LIKE CONCAT('%',?,'%')";
+			values.put(2, text.toLowerCase());
+			PreparedStatement pS = connection.prepareStatement(query);
+			for(Integer x : values.keySet()){
+				pS.setObject(x, values.get(x));
+			}
+			ResultSet rs = pS.executeQuery();
+			rs.next();
+			result = rs.getInt("count");
+			rs.close();
+			pS.close();
+		}catch(SQLException e){
+			e.printStackTrace();
 		}
 		return result;
 	}

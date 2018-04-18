@@ -7,11 +7,22 @@ function initPage(){
 	loadCarousel();
 }
 function loadPageNumber(){
-		$.ajax({ 
-             type: "GET",
-             dataType: "json",
-             url: SERVER_URL + "/movies/count",
-             success: function(data){
+	var searchText = "";
+	var textValue = $("#searchField").val();
+	if(textValue){
+		searchText = textValue;
+	}
+	var data = {
+				"text":searchText,
+			 };
+	var url = SERVER_URL + "/movies/countSearch";
+	$.ajax({
+		url: url,
+		method: "POST",
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: "application/json",
+		success: function(data){
 				var count = parseInt(data.count);
 				pagesCount = Math.ceil(count / itemsPerPage);
 				selectedPage = 0;
@@ -24,7 +35,7 @@ function loadPageNumber(){
 				}
 				loadPage(currentPage);
              }
-         });
+     });
 }
 function setOrder(order){
 	var order = $('input[name=order_radio]:checked').val();
@@ -54,18 +65,31 @@ function loadMovies(){
 	$("#pagination-container").hide();
 	//$("#order-by-movie").hide();
 	var orderText = getUrlVars()["order"];
-	var url = SERVER_URL + "/movies/listPage/" + currentPage;
+	var url = SERVER_URL + "/movies/search";
+	var order = 1;
 	if(Number.isInteger(parseInt(orderText))){
-		url+= "/" + orderText;
+		order = parseInt(orderText);
 	}
-	$.ajax({ 
-             type: "GET",
-             dataType: "json",
-             url: url,
-             success: function(data){
-				showMovieList(data);
-             }
-         });
+	var searchText = "";
+	var textValue = $("#searchField").val();
+	if(textValue){
+		searchText = textValue;
+	}
+	var data = {
+				"text":searchText,
+				"order": order,
+				"page": currentPage,
+			 };
+	$.ajax({
+		url: url,
+		method: "POST",
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: "application/json",
+		success: function(data){
+			showMovieList(data);
+		}
+     });
 }
 function loadCarousel(){
 	$.ajax({ 

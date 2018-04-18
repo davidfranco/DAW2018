@@ -1,0 +1,6 @@
+package es.skills2018.api.request;
+
+public interface MovieRequest {
+	private String text;
+	private 
+}
