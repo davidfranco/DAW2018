@@ -1,1 +1,1 @@
-var SERVER_URL = 'http://localhost:8080/RestAPI/rest';
+var SERVER_URL = 'http://192.168.101.23/:8080/RestAPI/rest';
