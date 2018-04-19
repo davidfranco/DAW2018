@@ -1,10 +1,21 @@
-# Aplicacion Requeridas
+# Tecnologias
+## Aplicacion Requeridas
 Java
 MySQL
 Tomcat8
 Apache
 Jenkins
 
+## Librerias
+Java Mail
+MySQL Connector
+HikariCP
+Jersey
+JQuery
+Bootstrap
+
+
+# Despliegue en Debian 9
 ## Instalación de Java
 Ejecutaremos los siguientes comandos:
 	sudo apt-get update
