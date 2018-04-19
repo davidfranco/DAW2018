@@ -1,4 +1,9 @@
+var actionInCourse = false;
 function sendContactMessage(){
+	if(actionInCourse){
+		return;
+	}
+	actionInCourse = true;
 	var name = $("#name_input").val();
 	var email = $("#email_input").val();
 	var subject = $("#subject_input").val();
@@ -11,7 +16,27 @@ function sendContactMessage(){
 		window.alert("Introduce un email valido.");
 		return;
 	}
-	window.location.search = jQuery.query.set("page", "contact_sent");
+	var url = SERVER_URL + "/contact";
+	var data = {
+		"name": name,
+		"email": email,
+		"subject": subject,
+		"message": message
+	};
+	$.ajax({
+		url: url,
+		method: "POST",
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: "application/json",
+		success: function(data){
+			window.location.search = jQuery.query.set("page", "contact_sent");
+        },
+		 error: function(XMLHttpRequest, textStatus, errorThrown) {
+			 actionInCourse = false;
+			 alert("No se pudo  enviar el mensaje.");
+		}
+     });
 }
 var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
 function isEmailAddress(str) {
