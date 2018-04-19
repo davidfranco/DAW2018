@@ -1,60 +1,79 @@
-# Introducción
-Nuestro sitio web va a ser un portal de películas basado en IMDB (http://www.imdb.com).
+# Aplicacion Requeridas
+Java
+MySQL
+Tomcat8
+Apache
+Jenkins
 
-Te recordamos que puedes usar las tecnologías (base de datos, lenguajes de programación y frameworks con los que te sientas más cómodo).
+## Instalación de Java
+Ejecutaremos los siguientes comandos:
+	sudo apt-get update
+	sudo apt-get install default-jdk
+	
+## Instalación de MySQL y carga de datos
+Ejecutaremos los siguientes comandos:
+	wget https://dev.mysql.com/get/mysql-apt-config_0.8.6-1_all.deb
+	apt install gdebi-core
+	apt update
+	apt install mysql-server
+	mysql -p (Aquí ya entrariamos a la consola de MySQL)
+	create database skills2018
+	create user skillsuser;
+	GRANT ALL ON skills2018.* TO 'skillsuser'@'localhost' identified by 'patata2944';
+	CREATE TABLE IF NOT EXISTS MOVIE(
+		movie_id INT AUTO_INCREMENT PRIMARY KEY,
+		image VARCHAR(300),
+		link VARCHAR(300) NOT NULL,
+		title VARCHAR(150) NOT NULL,
+		place INT NOT NULL,
+		rating DECIMAL(18,16) NOT NULL,
+		star_cast VARCHAR(400) NOT NULL,
+		vote INT NOT NULL,
+		year INT NOT NULL
+		);
+	INSERT INTO MOVIE(image,link,title,place,rating,star_cast,vote,year) VALUES("https://ia.media-imdb.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg","/title/tt0111161/?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=e31d89dd-322d-4646-8962-327b42fe94b1&pf_rd_r=DX6EBQY7EP99YF0K7X08&pf_rd_s=center-1&pf_rd_t=15506&pf_rd_i=top&ref_=chttp_tt_1","Cadena perpetua",1,9.216799472209534,"Frank Darabont (dir.), Tim Robbins, Morgan Freeman",1940722,1994)
+	(+249 Inserts de peliculas encontrados en Database.SQL)
+Control + C Para salir.
 
-## Normas generales sobre la competición
-- El uso del móvil no está permitido.
-- Se puede hacer uso de Internet y de cualquier otra información que aporte el competidor para la realización de la prueba basada en apuntes/materiales/documentación, no mediante la solicitud de ayuda a través de un foro u otro canal de intercambio de información.
-- No está permitida la comunicación con otros competidores u otro personal externo mediante cualquier método (móvil, chat, internet…). 
-- Está permitido el uso de cascos o tapones para aislar del ruido.
-- El equipo del competidor estará monitorizado y la sesión de trabajo grabada por un sistema de gestión remota para evitar acciones contrarias a las normas de la competición.
-- El competidor puede consultar al jurado ante cualquier duda que se le plantee sobre si alguna acción está permitida o no.
-- Disponéis de 20 minutos al inicio de cada módulo para la lectura de la prueba y planteamiento general de dudas
-  - Si surge un problema/aclaración de la prueba durante la competición se informará por igual a todos los participantes para estar en igualdad de condiciones.
+## Instalación de Tomcat
+Ejecutamos los siguientes comandos:
+	sudo apt-get update
+	sudo apt-get install tomcat8
+Añadir a /etc/tomcat8/web.xml
+     <filter>
+       <filter-name>CorsFilter</filter-name>
+       <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+     </filter>
+     <filter-mapping>
+       <filter-name>CorsFilter</filter-name>
+       <url-pattern>/*</url-pattern>
+     </filter-mapping>
 
-## Recomendaciones
-- **Trae un portatil ya configurado** con tu editor preferido, base de datos, etc. La organización de cualquier forma facilitará un portatil, teclado, ratón y una pantalla adicional para la realización de la prueba.En el primer día de la prueba, se dispondrá de un tiempo cercano a una hora (16:00 a 17:00) para que cada usuario pueda configurarse su puesto.
+sudo service tomcat8 restart
 
-- **Estudia bien los requerimientos de las pruebas**. Cada día se realizará y se evaluará un modulo. Al comienzo del mismo se entregarán sus instrucciones, bocetos y un checklist para su evaluación. Es conveniente leer cuidadosamente todos los items del checklist y seleccionar los más favorables. La prueba está dimensionada para que sea fácil realizar algunos items, pero no la finalización de todos ellos. En función de la arquitectura que se elija para hacer la aplicación hay items que no tiene sentido completar. 
+## Instalación de Apache
+sudo apt-get update && sudo apt-get upgrade
+sudo apt-get install apache2 apache2-doc apache2-utils
+sudo apt-get install libapache2-mod-php
+Mover web a /var/www/html/i
+sudo systemctl restart apache2
 
-- **Realiza los pasos previos que te proporcionamos**. No esperes a hacer un trabajo previo al día del examen si puedes ya llevarlo preparado. Lleva así mismo una arquitectura tipo para tu aplicación, con las librerías que utilices, etc..
+## Instalación de Jenkins
+Ejecutamos los siguientes comandos:
+	wget -q -O - http://pkg.jenkins-ci.org/debian-stable/jenkins-ci.org.key | apt-key add 
+	echo "deb http://pkg.jenkins-ci.org/debian-stable binary/" > /etc/apt/sources.list.d/jenkins.list
+	echo "deb http://pkg.jenkins-ci.org/debian binary/" > /etc/apt/sources.list.d/jenkins.list
+	apt update
+	apt install jenkins
+	sudo apt-get install git-core
+	sudo apt-get install maven
+Cambiamos en /etc/default/jenkins Http_port = 8888
 
-- **Ten claro el despliegue de tu aplicación en un servidor**. En el último módulo se hará el despliegue y es conveniente que tengas claro el tipo de máquina necesitas (Windows Server, Ubuntu 16...) y los paquetes que se deben instalar para que tu entorno funcione (servidor web, librerías, base de datos...). Se utilizará virtualización mediante VMWare.
+Entramos a la <ip>:8888 y seguimos las instrucciones de configuración.
 
-## Fechas y valoración de las pruebas
-**Módulo I:** ***Planificación, material gráfico y diseño web***
+Instalamos los plugins de Maven Integration y Deploy War File to Server.
+Creamos un nuevo proyecto de maven con origen de datos de git
+En "acciones a ejecutar despues" seleccionamos "Deploy War to Server" y rellenamos los datos de login para el servidor de tomcat.
 
--17 de Abril de 17:00 a 20:00 horas. 25% de la valoración final
+	
 
--De 16:00 a 17:00 h. Comprobación de herramientas y adaptación al puesto
-
--De 17:00 a 20:00 h. Realizacin de la prueba
-
-**Módulo II:** ***Programación (frontend y backend) y base de datos***
-
--18 de Abril de 10:00 a 14:00 horas y de 16:00 a 20:00 horas. 50% de la valoración final
-
-**Módulo III:** ***Tests, despliegue en servidor y control de versiones***
-
--19 de Abril de 10:00 a 14:00 horas. 25% de la valoración final
-
-
-## Pasos previos
- - Para realizar la prueba necesitaremos unos datos para su visualización, en este caso será listado de películas en formato json. **Es tarea tuya convertirlo al formato que te resulte conveniente (para importación a base de datos relacional, por ejemplo)**. En la prueba del segundo día se trabajará el acceso a datos y esta conversión de los datos de prueba a la base de datos es un trabajo que puedes hacer ya y así ahorrar un tiempo valioso para la prueba.
- 
- - Realiza un fork de este repositorio. Será el repositorio que tu utilices y sobre el que nosotros haremos el seguimiento de tu prueba. Si no controlas a nivel básico git & github, mira algo de documentación.
- 
-### Script obtención datos para la prueba
-El script de generación del listado y las instrucciones de uso del mismo por si te viene bien modificar algo.
-Listado de las mejores películas en imdb. El resultado de la ejecución del script está en el fichero *pelis.json*
-
-Se utiliza python 3. 
-
-Forma de ejecución:
-```
-pip install -r requirements.txt # instalación de dependencias
-python imdb.py # ejecución de script
-```
-
-El resultado de la ejecución del script se muestra el fichero *pelis.json*
